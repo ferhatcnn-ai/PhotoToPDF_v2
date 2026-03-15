@@ -13,8 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Zip dosyasını çıkar
-        run: |
-          unzip PhotoToPDF_v2.zip || true
+        run: unzip PhotoToPDF_v2.zip || true
 
       - name: Java kur
         uses: actions/setup-java@v4
@@ -22,16 +21,24 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Gradle izni ver
-        run: chmod +x PhotoToPDF/gradlew
+      - name: Gradle Wrapper oluştur
+        run: |
+          cd PhotoToPDF
+          gradle wrapper --gradle-version 8.0
+        env:
+          GRADLE_VERSION: 8.0
+
+      - name: Gradle kur
+        uses: gradle/actions/setup-gradle@v3
 
       - name: APK derle
         run: |
           cd PhotoToPDF
+          chmod +x gradlew
           ./gradlew assembleDebug
 
       - name: APK'yı kaydet
         uses: actions/upload-artifact@v4
         with:
           name: PhotoToPDF-APK
-          path: PhotoToPDF/app/build/ou
+          path: PhotoToPDF/app/build/o
