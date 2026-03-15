@@ -33,7 +33,7 @@ jobs:
 
       - name: APK derle
         run: |
-          cd PhotoToPDF
+          cd PhotoToPDF_v2
           chmod +x gradlew
           ./gradlew assembleDebug
 
