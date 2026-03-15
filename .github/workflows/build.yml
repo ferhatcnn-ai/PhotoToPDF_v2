@@ -23,7 +23,7 @@ jobs:
 
       - name: Gradle Wrapper oluştur
         run: |
-          cd PhotoToPDF
+          cd PhotoToPDF_v2
           gradle wrapper --gradle-version 8.0
         env:
           GRADLE_VERSION: 8.0
